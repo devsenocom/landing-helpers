@@ -24,31 +24,55 @@ const AppConfig = (() => {
       analytics_url:
         "https://analytic-client.chickgoddess.com/preland_stats/ac/visits",
       title: "Everlusting Life",
+      icons: [
+        { rel: "icon", href: "https://cdn.jsdelivr.net/gh/devsenocom/landing-helpers@latest/ac/favicon.webp", type: "image/webp", sizes: "16x16" },
+        // { rel: "icon", href: "/assets/favicon-32x32.png", type: "image/png", sizes: "32x32" },
+        // { rel: "apple-touch-icon", href: "/assets/apple-touch-icon.png", sizes: "180x180" },
+      ],
     },
     lust_goddess: {
       game_url: "https://lustgoddess.com/play",
       analytics_url:
         "https://analytic-client.chickgoddess.com/preland_stats/aw/visits",
       title: "Lust Goddess",
+      icons: [
+        { rel: "icon", href: "https://cdn.jsdelivr.net/gh/devsenocom/landing-helpers@latest/aw/favicon.webp", type: "image/webp", sizes: "16x16" },
+        // { rel: "icon", href: "/assets/favicon-32x32.png", type: "image/png", sizes: "32x32" },
+        // { rel: "apple-touch-icon", href: "/assets/apple-touch-icon.png", sizes: "180x180" },
+      ],
     },
     lust_goddess_mirror: {
       game_url: "https://2025lustgoddess.com/play",
       analytics_url:
         "https://analytic-client.chickgoddess.com/preland_stats/aw/visits",
       title: "Lust Goddess",
+      icons: [
+        { rel: "icon", href: "/assets/favicon-32x32.png", type: "image/webp", sizes: "16x16" },
+        // { rel: "icon", href: "/assets/favicon-32x32.png", type: "image/png", sizes: "32x32" },
+        // { rel: "apple-touch-icon", href: "/assets/apple-touch-icon.png", sizes: "180x180" },
+      ],
     },
-    // Заглушки для Prime Desire и Lust Frontiers
     prime_desire: {
       game_url: "https://prime-desire.com",
       analytics_url:
         "https://analytic-client.chickgoddess.com/preland_stats/pd/visits",
       title: "Prime Desire",
+      icons: [
+        { rel: "icon", href: "https://cdn.jsdelivr.net/gh/devsenocom/landing-helpers@latest/pd/favicon.webp", type: "image/webp", sizes: "16x16" },
+        { rel: "icon", href: "https://cdn.jsdelivr.net/gh/devsenocom/landing-helpers@latest/pd/favicon-32x32.webp", type: "image/webp", sizes: "32x32" },
+        // { rel: "apple-touch-icon", href: "/assets/apple-touch-icon.png", sizes: "180x180" },
+      ],
     },
     lust_frontiers: {
       game_url: "https://lustfrontiers.com",
       analytics_url:
         "https://analytic-client.chickgoddess.com/preland_stats/lf/visits",
       title: "Lust Frontiers",
+      icons: [
+        { rel: "icon", href: "https://cdn.jsdelivr.net/gh/devsenocom/landing-helpers@latest/lf/favicon.webp", type: "image/webp", sizes: "16x16" },
+        // { rel: "icon", href: "/assets/favicon-32x32.png", type: "image/png", sizes: "32x32" },
+        // { rel: "apple-touch-icon", href: "/assets/apple-touch-icon.png", sizes: "180x180" },
+      ],
     },
   };
 
@@ -62,7 +86,8 @@ const AppConfig = (() => {
         `CRITICAL: No config found for project code: ${projectKey}`,
       );
     }
-    return URL_CONFIG[mappedKey];
+    const base = URL_CONFIG[mappedKey];
+    return { ...base, icons: base.icons || [] };
   };
 
   return { get: getProjectConfig };
@@ -83,7 +108,7 @@ class UIService {
     // 1. Set Title
     if (config.title) document.title = config.title;
 
-    // 2. Inject Meta & Favicon (Check before inject to avoid duplicates)
+    // 2. Inject Meta (Check before inject to avoid duplicates)
     const headTags = [
       { tag: "meta", attrs: { name: "robots", content: "noindex" } },
       { tag: "meta", attrs: { charset: "UTF-8" } },
@@ -94,15 +119,6 @@ class UIService {
           content: "width=device-width,initial-scale=1",
         },
       },
-      {
-        tag: "link",
-        attrs: {
-          rel: "icon",
-          href: "favicon.webp",
-          type: "image/webp",
-          sizes: "233x233",
-        },
-      },
     ];
 
     headTags.forEach((item) => {
@@ -110,10 +126,7 @@ class UIService {
         ? `${item.tag}[name="${item.attrs.name}"]`
         : `${item.tag}[rel="${item.attrs.rel}"]`;
 
-      if (
-        (!document.head.querySelector(selector) && item.tag !== "meta") ||
-        !document.head.querySelector(`meta[name="${item.attrs.name}"]`)
-      ) {
+      if (!document.head.querySelector(selector)) {
         const element = document.createElement(item.tag);
         Object.entries(item.attrs).forEach(([key, value]) =>
           element.setAttribute(key, value),
@@ -121,6 +134,25 @@ class UIService {
         document.head.appendChild(element);
       }
     });
+
+    // 3. Inject favicon/icons only if none are present in <head>
+    const hasIcon =
+      document.head.querySelector(
+        'link[rel="icon"], link[rel="shortcut icon"], link[rel="apple-touch-icon"]',
+      ) !== null;
+
+    if (!hasIcon && Array.isArray(config.icons) && config.icons.length > 0) {
+      config.icons.forEach((icon) => {
+        const element = document.createElement("link");
+        Object.entries(icon).forEach(([key, value]) =>
+          element.setAttribute(key, value),
+        );
+        document.head.appendChild(element);
+      });
+      console.log("🧠 Favicon icons injected from config");
+    } else {
+      console.log("🧠 Favicon already present, skipping injection");
+    }
 
     console.log("🧠 Head metadata injected");
   }
