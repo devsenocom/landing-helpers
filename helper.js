@@ -43,7 +43,7 @@ const AppConfig = (() => {
       icons: [
         {
           rel: "icon",
-          href: "https://cdn.jsdelivr.net/gh/devsenocom/landing-helpeaw@latest/aw/favicon.webp",
+          href: "https://cdn.jsdelivr.net/gh/devsenocom/landing-helpers@latest/aw/favicon.webp",
           type: "image/webp",
           sizes: "16x16",
         },
