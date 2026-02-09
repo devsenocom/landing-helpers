@@ -25,7 +25,12 @@ const AppConfig = (() => {
         "https://dev.ingest.lu-analytics.com/preland_stats/adult_chess/visits",
       title: "Everlusting Life",
       icons: [
-        { rel: "icon", href: "https://cdn.jsdelivr.net/gh/devsenocom/landing-helpers@latest/ac/favicon.webp", type: "image/webp", sizes: "16x16" },
+        {
+          rel: "icon",
+          href: "https://cdn.jsdelivr.net/gh/devsenocom/landing-helpers@latest/ac/favicon.webp",
+          type: "image/webp",
+          sizes: "16x16",
+        },
         // { rel: "icon", href: "/assets/favicon-32x32.png", type: "image/png", sizes: "32x32" },
         // { rel: "apple-touch-icon", href: "/assets/apple-touch-icon.png", sizes: "180x180" },
       ],
@@ -36,7 +41,12 @@ const AppConfig = (() => {
         "https://dev.ingest.lu-analytics.com/preland_stats/adult_lyssa/visits",
       title: "Lust Goddess",
       icons: [
-        { rel: "icon", href: "https://cdn.jsdelivr.net/gh/devsenocom/landing-helpers@latest/aw/favicon.webp", type: "image/webp", sizes: "16x16" },
+        {
+          rel: "icon",
+          href: "https://cdn.jsdelivr.net/gh/devsenocom/landing-helpeaw@latest/aw/favicon.webp",
+          type: "image/webp",
+          sizes: "16x16",
+        },
         // { rel: "icon", href: "/assets/favicon-32x32.png", type: "image/png", sizes: "32x32" },
         // { rel: "apple-touch-icon", href: "/assets/apple-touch-icon.png", sizes: "180x180" },
       ],
@@ -47,7 +57,12 @@ const AppConfig = (() => {
         "https://dev.ingest.lu-analytics.com/preland_stats/adult_lyssa/visits",
       title: "Lust Goddess",
       icons: [
-        { rel: "icon", href: "/assets/favicon-32x32.png", type: "image/webp", sizes: "16x16" },
+        {
+          rel: "icon",
+          href: "/assets/favicon-32x32.png",
+          type: "image/webp",
+          sizes: "16x16",
+        },
         // { rel: "icon", href: "/assets/favicon-32x32.png", type: "image/png", sizes: "32x32" },
         // { rel: "apple-touch-icon", href: "/assets/apple-touch-icon.png", sizes: "180x180" },
       ],
@@ -58,8 +73,18 @@ const AppConfig = (() => {
         "https://dev.ingest.lu-analytics.com/preland_stats/prime_desire/visits",
       title: "Prime Desire",
       icons: [
-        { rel: "icon", href: "https://cdn.jsdelivr.net/gh/devsenocom/landing-helpers@latest/pd/favicon.webp", type: "image/webp", sizes: "16x16" },
-        { rel: "icon", href: "https://cdn.jsdelivr.net/gh/devsenocom/landing-helpers@latest/pd/favicon-32x32.webp", type: "image/webp", sizes: "32x32" },
+        {
+          rel: "icon",
+          href: "https://cdn.jsdelivr.net/gh/devsenocom/landing-helpers@latest/pd/favicon.webp",
+          type: "image/webp",
+          sizes: "16x16",
+        },
+        {
+          rel: "icon",
+          href: "https://cdn.jsdelivr.net/gh/devsenocom/landing-helpers@latest/pd/favicon-32x32.webp",
+          type: "image/webp",
+          sizes: "32x32",
+        },
         // { rel: "apple-touch-icon", href: "/assets/apple-touch-icon.png", sizes: "180x180" },
       ],
     },
@@ -69,7 +94,12 @@ const AppConfig = (() => {
         "https://dev.ingest.lu-analytics.com/preland_stats/lust_frontiers/visits",
       title: "Lust Frontiers",
       icons: [
-        { rel: "icon", href: "https://cdn.jsdelivr.net/gh/devsenocom/landing-helpers@latest/lf/favicon.webp", type: "image/webp", sizes: "16x16" },
+        {
+          rel: "icon",
+          href: "https://cdn.jsdelivr.net/gh/devsenocom/landing-helpers@latest/lf/favicon.webp",
+          type: "image/webp",
+          sizes: "16x16",
+        },
         // { rel: "icon", href: "/assets/favicon-32x32.png", type: "image/png", sizes: "32x32" },
         // { rel: "apple-touch-icon", href: "/assets/apple-touch-icon.png", sizes: "180x180" },
       ],
@@ -180,6 +210,10 @@ class StorageService {
       const params = new URLSearchParams(searchString);
       const tracking = Object.fromEntries(params.entries());
       localStorage.setItem("tracking_params", JSON.stringify(tracking));
+      const cleanSearch = searchString.startsWith("?")
+        ? searchString.substring(1)
+        : searchString;
+      localStorage.setItem("utm_full", cleanSearch);
       console.log("💾 Params saved to LS");
     } catch (e) {
       console.warn("⚠️ LS unavailable (VPN/Incognito), relying on URL params.");
@@ -192,6 +226,15 @@ class StorageService {
       return stored ? JSON.parse(stored) : this._extractFromUrl(fallbackUrl);
     } catch (e) {
       return this._extractFromUrl(fallbackUrl);
+    }
+  }
+
+  static getUtmFull(fallbackUrl) {
+    try {
+      const stored = localStorage.getItem("utm_full");
+      return stored || new URL(fallbackUrl).search.substring(1);
+    } catch (e) {
+      return new URL(fallbackUrl).search.substring(1);
     }
   }
 
@@ -208,13 +251,15 @@ class AnalyticsService {
   static async send(
     endpoint,
     referrer,
-    action = null,
+    action = "visit",
     currentUrl = location.href,
+    utmFull = "",
   ) {
     const payload = {
       url: currentUrl,
       referrer: referrer,
-      ...(action && { action }),
+      action: action,
+      utm_full: utmFull,
     };
 
     try {
@@ -262,7 +307,7 @@ const initApp = async () => {
   try {
     // --- 1. Init Configuration ---
     const config = AppConfig.get();
-    if (!config) return; // Stop if config invalid
+    if (!config) return;
 
     const originalUrl = location.href;
     const originalReferrer = document.referrer;
@@ -274,9 +319,17 @@ const initApp = async () => {
 
     // --- 3. Process Data ---
     StorageService.saveParams(location.search);
-    AnalyticsService.send(config.analytics_url, originalReferrer);
+    const utmFull = StorageService.getUtmFull(originalUrl);
+
     NavigationManager.cleanUrl();
 
+    AnalyticsService.send(
+      config.analytics_url,
+      originalReferrer,
+      "visit",
+      location.href,
+      utmFull,
+    );
     // --- 4. Define Core Redirect Action ---
     const executeRedirect = (triggerSource) => {
       const params = StorageService.getParams(originalUrl);
@@ -290,7 +343,8 @@ const initApp = async () => {
         config.analytics_url,
         originalReferrer,
         triggerSource,
-        originalUrl,
+        location.href,
+        utmFull,
       );
 
       // Go!
