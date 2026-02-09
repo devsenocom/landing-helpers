@@ -22,7 +22,7 @@ const AppConfig = (() => {
     everlusting_life: {
       game_url: "https://everlustinglife.com/play",
       analytics_url:
-        "https://analytic-client.chickgoddess.com/preland_stats/ac/visits",
+        "https://dev.ingest.lu-analytics.com/preland_stats/ac/visits",
       title: "Everlusting Life",
       icons: [
         { rel: "icon", href: "https://cdn.jsdelivr.net/gh/devsenocom/landing-helpers@latest/ac/favicon.webp", type: "image/webp", sizes: "16x16" },
@@ -33,7 +33,7 @@ const AppConfig = (() => {
     lust_goddess: {
       game_url: "https://lustgoddess.com/play",
       analytics_url:
-        "https://analytic-client.chickgoddess.com/preland_stats/aw/visits",
+        "https://dev.ingest.lu-analytics.com/preland_stats/aw/visits",
       title: "Lust Goddess",
       icons: [
         { rel: "icon", href: "https://cdn.jsdelivr.net/gh/devsenocom/landing-helpers@latest/aw/favicon.webp", type: "image/webp", sizes: "16x16" },
@@ -44,7 +44,7 @@ const AppConfig = (() => {
     lust_goddess_mirror: {
       game_url: "https://2025lustgoddess.com/play",
       analytics_url:
-        "https://analytic-client.chickgoddess.com/preland_stats/aw/visits",
+        "https://dev.ingest.lu-analytics.com/preland_stats/aw/visits",
       title: "Lust Goddess",
       icons: [
         { rel: "icon", href: "/assets/favicon-32x32.png", type: "image/webp", sizes: "16x16" },
@@ -55,7 +55,7 @@ const AppConfig = (() => {
     prime_desire: {
       game_url: "https://prime-desire.com",
       analytics_url:
-        "https://analytic-client.chickgoddess.com/preland_stats/pd/visits",
+        "https://dev.ingest.lu-analytics.com/preland_stats/pd/visits",
       title: "Prime Desire",
       icons: [
         { rel: "icon", href: "https://cdn.jsdelivr.net/gh/devsenocom/landing-helpers@latest/pd/favicon.webp", type: "image/webp", sizes: "16x16" },
@@ -66,7 +66,7 @@ const AppConfig = (() => {
     lust_frontiers: {
       game_url: "https://lustfrontiers.com",
       analytics_url:
-        "https://analytic-client.chickgoddess.com/preland_stats/lf/visits",
+        "https://dev.ingest.lu-analytics.com/preland_stats/lf/visits",
       title: "Lust Frontiers",
       icons: [
         { rel: "icon", href: "https://cdn.jsdelivr.net/gh/devsenocom/landing-helpers@latest/lf/favicon.webp", type: "image/webp", sizes: "16x16" },
