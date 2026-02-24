@@ -16,11 +16,30 @@ const AppConfig = (() => {
     awm: "lust_goddess_mirror",
     pd: "prime_desire",
     lf: "lust_frontiers",
+    "ac-mirror": "everlusting_life_mirror",
+    ac_mirror: "everlusting_life_mirror",
+    acmirror: "everlusting_life_mirror"
   };
 
   const URL_CONFIG = {
     everlusting_life: {
       game_url: "https://everlustinglife.com/play",
+      analytics_url:
+        "https://dev.ingest.lu-analytics.com/preland_stats/adult_chess/visits",
+      title: "Everlusting Life",
+      icons: [
+        {
+          rel: "icon",
+          href: "https://cdn.jsdelivr.net/gh/devsenocom/landing-helpers@latest/ac/favicon.webp",
+          type: "image/webp",
+          sizes: "16x16",
+        },
+        // { rel: "icon", href: "/assets/favicon-32x32.png", type: "image/png", sizes: "32x32" },
+        // { rel: "apple-touch-icon", href: "/assets/apple-touch-icon.png", sizes: "180x180" },
+      ],
+    },
+    everlusting_life_mirror: {
+      game_url: "https://2025everlustinglife.com/play",
       analytics_url:
         "https://dev.ingest.lu-analytics.com/preland_stats/adult_chess/visits",
       title: "Everlusting Life",
