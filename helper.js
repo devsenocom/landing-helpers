@@ -89,7 +89,7 @@ const AppConfig = (() => {
       ],
     },
     lust_frontiers: {
-      game_url: "https://lustfrontiers.com",
+      game_url: "https://www.lustfrontiers.com",
       analytics_url:
         "https://dev.ingest.lu-analytics.com/preland_stats/lust_frontiers/visits",
       title: "Lust Frontiers",
