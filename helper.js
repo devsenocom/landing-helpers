@@ -25,7 +25,7 @@ const AppConfig = (() => {
     everlusting_life: {
       game_url: "https://everlustinglife.com/play",
       analytics_url:
-        "https://dev.ingest.lu-analytics.com/preland_stats/adult_chess/visits",
+        "https://ingest.lu-analytics.com/preland_stats/adult_chess/visits",
       title: "Everlusting Life",
       icons: [
         {
@@ -41,7 +41,7 @@ const AppConfig = (() => {
     everlusting_life_mirror: {
       game_url: "https://2025everlustinglife.com/play",
       analytics_url:
-        "https://dev.ingest.lu-analytics.com/preland_stats/adult_chess/visits",
+        "https://ingest.lu-analytics.com/preland_stats/adult_chess/visits",
       title: "Everlusting Life",
       icons: [
         {
@@ -57,7 +57,7 @@ const AppConfig = (() => {
     lust_goddess: {
       game_url: "https://lustgoddess.com/play",
       analytics_url:
-        "https://dev.ingest.lu-analytics.com/preland_stats/adult_lyssa/visits",
+        "https://ingest.lu-analytics.com/preland_stats/adult_lyssa/visits",
       title: "Lust Goddess",
       icons: [
         {
@@ -73,7 +73,7 @@ const AppConfig = (() => {
     lust_goddess_mirror: {
       game_url: "https://2025lustgoddess.com/play",
       analytics_url:
-        "https://dev.ingest.lu-analytics.com/preland_stats/adult_lyssa/visits",
+        "https://ingest.lu-analytics.com/preland_stats/adult_lyssa/visits",
       title: "Lust Goddess",
       icons: [
         {
@@ -89,7 +89,7 @@ const AppConfig = (() => {
     prime_desire: {
       game_url: "https://prime-desire.com",
       analytics_url:
-        "https://dev.ingest.lu-analytics.com/preland_stats/prime_desire/visits",
+        "https://ingest.lu-analytics.com/preland_stats/prime_desire/visits",
       title: "Prime Desire",
       icons: [
         {
@@ -110,7 +110,7 @@ const AppConfig = (() => {
     lust_frontiers: {
       game_url: "https://www.lustfrontiers.com",
       analytics_url:
-        "https://dev.ingest.lu-analytics.com/preland_stats/lust_frontiers/visits",
+        "https://ingest.lu-analytics.com/preland_stats/lust_frontiers/visits",
       title: "Lust Frontiers",
       icons: [
         {
