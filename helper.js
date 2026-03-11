@@ -87,7 +87,7 @@ const AppConfig = (() => {
       ],
     },
     prime_desire: {
-      game_url: "https://prime-desire.com",
+      game_url: "https://www.prime-desire.com",
       analytics_url:
         "https://ingest.lu-analytics.com/preland_stats/prime_desire/visits",
       title: "Prime Desire",
