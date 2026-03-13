@@ -342,13 +342,13 @@ const initApp = async () => {
 
     NavigationManager.cleanUrl();
 
-    AnalyticsService.send(
-      config.analytics_url,
-      originalReferrer,
-      "visit",
-      location.href,
-      utmFull,
-    );
+    // AnalyticsService.send(
+    //   config.analytics_url,
+    //   originalReferrer,
+    //   "visit",
+    //   location.href,
+    //   utmFull,
+    // );
     // --- 4. Define Core Redirect Action ---
     const executeRedirect = (triggerSource) => {
       const params = StorageService.getParams(originalUrl);
