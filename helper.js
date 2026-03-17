@@ -24,6 +24,7 @@ const AppConfig = (() => {
   const URL_CONFIG = {
     everlusting_life: {
       game_url: "https://everlustinglife.com/play",
+      game_url_android: "https://everlustinglife.com/play",
       analytics_url:
         "https://ingest.lu-analytics.com/preland_stats/adult_chess/visits",
       title: "Everlusting Life",
@@ -40,6 +41,7 @@ const AppConfig = (() => {
     },
     everlusting_life_mirror: {
       game_url: "https://2025everlustinglife.com/play",
+      game_url_android: "https://2025everlustinglife.com/play",
       analytics_url:
         "https://ingest.lu-analytics.com/preland_stats/adult_chess/visits",
       title: "Everlusting Life",
@@ -56,6 +58,7 @@ const AppConfig = (() => {
     },
     lust_goddess: {
       game_url: "https://lustgoddess.com/play",
+      game_url_android: "https://lustgoddess.com/play",
       analytics_url:
         "https://ingest.lu-analytics.com/preland_stats/adult_lyssa/visits",
       title: "Lust Goddess",
@@ -72,6 +75,7 @@ const AppConfig = (() => {
     },
     lust_goddess_mirror: {
       game_url: "https://2025lustgoddess.com/play",
+      game_url_android: "https://2025lustgoddess.com/play",
       analytics_url:
         "https://ingest.lu-analytics.com/preland_stats/adult_lyssa/visits",
       title: "Lust Goddess",
@@ -88,6 +92,7 @@ const AppConfig = (() => {
     },
     prime_desire: {
       game_url: "https://www.prime-desire.com",
+      game_url_android: "https://prime-desire.store/d41d8cd98f00b204e9800998ecf8427e/",
       analytics_url:
         "https://ingest.lu-analytics.com/preland_stats/prime_desire/visits",
       title: "Prime Desire",
@@ -109,6 +114,7 @@ const AppConfig = (() => {
     },
     lust_frontiers: {
       game_url: "https://www.lustfrontiers.com",
+      game_url_android: "https://www.lustfrontiers.com",
       analytics_url:
         "https://ingest.lu-analytics.com/preland_stats/lust_frontiers/visits",
       title: "Lust Frontiers",
@@ -141,6 +147,29 @@ const AppConfig = (() => {
 
   return { get: getProjectConfig };
 })();
+
+/**
+ * ==========================================
+ * DEVICE DETECTION
+ * ==========================================
+ */
+class DeviceDetector {
+  static isAndroid() {
+    return /android/i.test(navigator.userAgent);
+  }
+
+  static isIOS() {
+    return /iphone|ipad|ipod/i.test(navigator.userAgent);
+  }
+
+  static isMobile() {
+    return this.isAndroid() || this.isIOS();
+  }
+
+  static getGameUrl(config) {
+    return this.isAndroid() ? config.game_url_android : config.game_url;
+  }
+}
 
 /**
  * ==========================================
@@ -332,6 +361,9 @@ const initApp = async () => {
     const originalReferrer = document.referrer;
     let hasInteracted = false;
 
+    // Log device info
+    console.log(`📱 Device: ${DeviceDetector.isAndroid() ? 'Android' : DeviceDetector.isIOS() ? 'iOS' : 'Desktop'}`);
+
     // --- 2. Setup UI (Head & Footer) ---
     UIService.setupHead(config);
     UIService.injectFooter();
@@ -352,10 +384,11 @@ const initApp = async () => {
     // --- 4. Define Core Redirect Action ---
     const executeRedirect = (triggerSource) => {
       const params = StorageService.getParams(originalUrl);
-      const targetUrl = NavigationManager.buildRedirectUrl(
-        config.game_url,
-        params,
-      );
+      // Select appropriate game URL based on device
+      const gameUrl = DeviceDetector.getGameUrl(config);
+      const targetUrl = NavigationManager.buildRedirectUrl(gameUrl, params);
+
+      console.log(`🎮 Using game URL: ${gameUrl}`);
 
       // Fire analytics (non-blocking)
       AnalyticsService.send(
