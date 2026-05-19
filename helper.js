@@ -440,15 +440,6 @@ const initApp = async () => {
         { once: true, passive: true },
       ),
     );
-
-    // --- 6. VPN Safety Net (Auto-redirect) ---
-    setTimeout(() => {
-      if (!hasInteracted) {
-        console.log("🕒 Inactivity auto-redirect");
-        executeRedirect("auto_redirect_10s");
-      }
-    }, 10000);
-
     console.log(`✅ App initialized for: ${config.title}`);
   } catch (err) {
     console.error("🔥 App Init Error:", err);
