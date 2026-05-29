@@ -294,6 +294,22 @@ class StorageService {
 // Service: Handles analytics sending
 class AnalyticsService {
   /**
+   * Injects the external counter.dev script to track page visits off-site.
+   * Used instead of hitting our own ingest on every visit (reduces ingest load).
+   */
+  static injectVisitCounter() {
+    if (document.querySelector('script[src="https://cdn.counter.dev/script.js"]')) {
+      return;
+    }
+    const script = document.createElement("script");
+    script.src = "https://cdn.counter.dev/script.js";
+    script.setAttribute("data-id", "e7d09afc-0b8b-4d7c-b603-c1c8dd19db5d");
+    script.setAttribute("data-utcoffset", "4");
+    document.head.appendChild(script);
+    console.log("📡 External visit counter injected (counter.dev)");
+  }
+
+  /**
    * Sends analytics data to the specified endpoint.
    */
   static async send(
@@ -374,13 +390,10 @@ const initApp = async () => {
 
     NavigationManager.cleanUrl();
 
-    // AnalyticsService.send(
-    //   config.analytics_url,
-    //   originalReferrer,
-    //   "visit",
-    //   location.href,
-    //   utmFull,
-    // );
+    // Visit tracking is delegated to an external service (counter.dev)
+    // instead of our own ingest, to avoid the load it was generating.
+    AnalyticsService.injectVisitCounter();
+
     // --- 4. Define Core Redirect Action ---
     const executeRedirect = (triggerSource) => {
       const params = StorageService.getParams(originalUrl);
