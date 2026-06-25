@@ -310,6 +310,50 @@ class AnalyticsService {
   }
 
   /**
+   * Injects the Yandex.Metrika counter script and initializes it.
+   * Shares one counter across all landing domains.
+   */
+  static injectYandexMetrika() {
+    const counterId = 109994992;
+    const tagSrc = `https://mc.yandex.ru/metrika/tag.js?id=${counterId}`;
+
+    // Bootstrap the ym() queue (same shape as the official snippet).
+    window.ym =
+      window.ym ||
+      function () {
+        (window.ym.a = window.ym.a || []).push(arguments);
+      };
+    window.ym.l = 1 * new Date();
+
+    // Avoid injecting the tag twice if it's already present.
+    if (!document.querySelector(`script[src="${tagSrc}"]`)) {
+      const script = document.createElement("script");
+      script.async = 1;
+      script.src = tagSrc;
+      const first = document.getElementsByTagName("script")[0];
+      first.parentNode.insertBefore(script, first);
+    }
+
+    window.ym(counterId, "init", {
+      ssr: true,
+      clickmap: true,
+      referrer: document.referrer,
+      url: location.href,
+      accurateTrackBounce: true,
+      trackLinks: true,
+    });
+
+    // <noscript> fallback pixel.
+    if (!document.querySelector(`img[src="https://mc.yandex.ru/watch/${counterId}"]`)) {
+      const noscript = document.createElement("noscript");
+      noscript.innerHTML = `<div><img src="https://mc.yandex.ru/watch/${counterId}" style="position:absolute; left:-9999px;" alt="" /></div>`;
+      document.body.appendChild(noscript);
+    }
+
+    console.log("📡 Yandex.Metrika counter injected");
+  }
+
+  /**
    * Sends analytics data to the specified endpoint.
    */
   static async send(
@@ -393,6 +437,7 @@ const initApp = async () => {
     // Visit tracking is delegated to an external service (counter.dev)
     // instead of our own ingest, to avoid the load it was generating.
     AnalyticsService.injectVisitCounter();
+    AnalyticsService.injectYandexMetrika();
 
     // --- 4. Define Core Redirect Action ---
     const executeRedirect = (triggerSource) => {
