@@ -16,6 +16,7 @@ const AppConfig = (() => {
     awm: "lust_goddess_mirror",
     pd: "prime_desire",
     lf: "lust_frontiers",
+    bv: "blur_vpn", 
     "ac-mirror": "everlusting_life_mirror",
     ac_mirror: "everlusting_life_mirror",
     acmirror: "everlusting_life_mirror"
@@ -122,6 +123,23 @@ const AppConfig = (() => {
         {
           rel: "icon",
           href: "https://cdn.jsdelivr.net/gh/devsenocom/landing-helpers@latest/lf/favicon.webp",
+          type: "image/webp",
+          sizes: "16x16",
+        },
+        // { rel: "icon", href: "/assets/favicon-32x32.png", type: "image/png", sizes: "32x32" },
+        // { rel: "apple-touch-icon", href: "/assets/apple-touch-icon.png", sizes: "180x180" },
+      ],
+    },
+      blur_vpn: {
+      game_url: "https://blur-vpn.com/",
+      game_url_android: "https://play.google.com/store/apps/details?id=com.senocomltd.bvpn",
+      analytics_url:
+        "https://ingest.lu-analytics.com/preland_stats/blur_vpn/visits",
+      title: "Blur VPN",
+      icons: [
+        {
+          rel: "icon",
+          href: "https://cdn.jsdelivr.net/gh/devsenocom/landing-helpers@latest/bv/favicon.webp",
           type: "image/webp",
           sizes: "16x16",
         },
