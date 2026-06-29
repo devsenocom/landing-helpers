@@ -130,11 +130,15 @@ const AppConfig = (() => {
         // { rel: "apple-touch-icon", href: "/assets/apple-touch-icon.png", sizes: "180x180" },
       ],
     },
-      blur_vpn: {
+    blur_vpn: {
       game_url: "https://blur-vpn.com/",
       game_url_android: "https://play.google.com/store/apps/details?id=com.senocomltd.bvpn",
       analytics_url:
         "https://ingest.lu-analytics.com/preland_stats/blur_vpn/visits",
+      // Сбор атрибуции включён только для blur_vpn. При клике по кнопке
+      // формируется запрос на attribution_url со всеми URL-параметрами.
+      send_attribution: true,
+      attribution_url: "https://actions.lu-analytics.com/track/blur_vpn/",
       title: "Blur VPN",
       icons: [
         {
@@ -400,6 +404,30 @@ class AnalyticsService {
       console.warn("⚠️ Analytics failed:", error);
     }
   }
+
+  /**
+   * Sends an attribution request to attribution_url with all URL params
+   * attached as query params. Fired on button interaction when the project
+   * config has send_attribution enabled.
+   */
+  static sendAttribution(attributionUrl, params) {
+    if (!attributionUrl) return;
+    try {
+      const payload = {
+        event: "install",
+        full_params: JSON.stringify(params || {}),
+      };
+      fetch(attributionUrl, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+        keepalive: true,
+      });
+      console.log("📡 Attribution sent:", payload);
+    } catch (error) {
+      console.warn("⚠️ Attribution failed:", error);
+    }
+  }
 }
 
 // Service: Manages URL cleaning and redirection
@@ -467,13 +495,18 @@ const initApp = async () => {
       console.log(`🎮 Using game URL: ${gameUrl}`);
 
       // Fire analytics (non-blocking)
-      AnalyticsService.send(
-        config.analytics_url,
-        originalReferrer,
-        triggerSource,
-        location.href,
-        utmFull,
-      );
+      // AnalyticsService.send(
+      //   config.analytics_url,
+      //   originalReferrer,
+      //   triggerSource,
+      //   location.href,
+      //   utmFull,
+      // );
+
+      // Fire attribution (non-blocking) — only when enabled in config
+      if (config.send_attribution) {
+        AnalyticsService.sendAttribution(config.attribution_url, params);
+      }
 
       // Go!
       NavigationManager.redirect(targetUrl);
