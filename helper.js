@@ -136,8 +136,7 @@ const AppConfig = (() => {
       game_url: "https://blur-vpn.com/",
       game_url_android:
         "https://play.google.com/store/apps/details?id=com.senocomltd.bvpn",
-      game_url_ios:
-        "https://apps.apple.com/eg/app/bvpn/id6766581158",
+      game_url_ios: "https://apps.apple.com/eg/app/bvpn/id6766581158",
       analytics_url:
         "https://ingest.lu-analytics.com/preland_stats/blur_vpn/visits",
       // Сбор атрибуции включён только для blur_vpn. При клике по кнопке
@@ -158,7 +157,8 @@ const AppConfig = (() => {
     },
     laguna_rosa: {
       game_url: "https://lagunarosa.com/",
-      game_url_android: "https://laguna-rosa.store/baf9c4afc061758dd6229157735befa2/",
+      game_url_android:
+        "https://laguna-rosa.store/baf9c4afc061758dd6229157735befa2/",
       analytics_url:
         "https://ingest.lu-analytics.com/preland_stats/laguna_rosa/visits",
       title: "Laguna Rosa",
@@ -209,11 +209,9 @@ class DeviceDetector {
   }
 
   static getGameUrl(config) {
-    return this.isAndroid()
-      ? config.game_url_android
-      : this.isIOS() && config.game_url_ios
-        ? config.game_url_ios
-        : config.game_url;
+    if (this.isAndroid()) return config.game_url_android;
+    if (this.isIOS() && config.game_url_ios) return config.game_url_ios;
+    return config.game_url;
   }
 }
 
