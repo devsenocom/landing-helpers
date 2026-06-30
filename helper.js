@@ -136,6 +136,8 @@ const AppConfig = (() => {
       game_url: "https://blur-vpn.com/",
       game_url_android:
         "https://play.google.com/store/apps/details?id=com.senocomltd.bvpn",
+      game_url_ios:
+        "https://apps.apple.com/eg/app/bvpn/id6766581158",
       analytics_url:
         "https://ingest.lu-analytics.com/preland_stats/blur_vpn/visits",
       // Сбор атрибуции включён только для blur_vpn. При клике по кнопке
@@ -207,7 +209,11 @@ class DeviceDetector {
   }
 
   static getGameUrl(config) {
-    return this.isAndroid() ? config.game_url_android : config.game_url;
+    return this.isAndroid()
+      ? config.game_url_android
+      : this.isIOS() && config.game_url_ios
+        ? config.game_url_ios
+        : config.game_url;
   }
 }
 
