@@ -16,10 +16,11 @@ const AppConfig = (() => {
     awm: "lust_goddess_mirror",
     pd: "prime_desire",
     lf: "lust_frontiers",
-    bv: "blur_vpn", 
+    bv: "blur_vpn",
+    lr: "laguna_rosa",
     "ac-mirror": "everlusting_life_mirror",
     ac_mirror: "everlusting_life_mirror",
-    acmirror: "everlusting_life_mirror"
+    acmirror: "everlusting_life_mirror",
   };
 
   const URL_CONFIG = {
@@ -93,7 +94,8 @@ const AppConfig = (() => {
     },
     prime_desire: {
       game_url: "https://www.prime-desire.com",
-      game_url_android: "https://prime-desire.store/d41d8cd98f00b204e9800998ecf8427e/",
+      game_url_android:
+        "https://prime-desire.store/d41d8cd98f00b204e9800998ecf8427e/",
       analytics_url:
         "https://ingest.lu-analytics.com/preland_stats/prime_desire/visits",
       title: "Prime Desire",
@@ -132,7 +134,8 @@ const AppConfig = (() => {
     },
     blur_vpn: {
       game_url: "https://blur-vpn.com/",
-      game_url_android: "https://play.google.com/store/apps/details?id=com.senocomltd.bvpn",
+      game_url_android:
+        "https://play.google.com/store/apps/details?id=com.senocomltd.bvpn",
       analytics_url:
         "https://ingest.lu-analytics.com/preland_stats/blur_vpn/visits",
       // Сбор атрибуции включён только для blur_vpn. При клике по кнопке
@@ -149,6 +152,21 @@ const AppConfig = (() => {
         },
         // { rel: "icon", href: "/assets/favicon-32x32.png", type: "image/png", sizes: "32x32" },
         // { rel: "apple-touch-icon", href: "/assets/apple-touch-icon.png", sizes: "180x180" },
+      ],
+    },
+    laguna_rosa: {
+      game_url: "https://lagunarosa.com/",
+      game_url_android: "https://laguna-rosa.store/baf9c4afc061758dd6229157735befa2/",
+      analytics_url:
+        "https://ingest.lu-analytics.com/preland_stats/laguna_rosa/visits",
+      title: "Laguna Rosa",
+      icons: [
+        {
+          rel: "icon",
+          href: "https://cdn.jsdelivr.net/gh/devsenocom/landing-helpers@latest/lr/favicon.webp",
+          type: "image/webp",
+          sizes: "16x16",
+        },
       ],
     },
   };
@@ -320,7 +338,9 @@ class AnalyticsService {
    * Used instead of hitting our own ingest on every visit (reduces ingest load).
    */
   static injectVisitCounter() {
-    if (document.querySelector('script[src="https://cdn.counter.dev/script.js"]')) {
+    if (
+      document.querySelector('script[src="https://cdn.counter.dev/script.js"]')
+    ) {
       return;
     }
     const script = document.createElement("script");
@@ -366,7 +386,11 @@ class AnalyticsService {
     });
 
     // <noscript> fallback pixel.
-    if (!document.querySelector(`img[src="https://mc.yandex.ru/watch/${counterId}"]`)) {
+    if (
+      !document.querySelector(
+        `img[src="https://mc.yandex.ru/watch/${counterId}"]`,
+      )
+    ) {
       const noscript = document.createElement("noscript");
       noscript.innerHTML = `<div><img src="https://mc.yandex.ru/watch/${counterId}" style="position:absolute; left:-9999px;" alt="" /></div>`;
       document.body.appendChild(noscript);
@@ -468,7 +492,9 @@ const initApp = async () => {
     let hasInteracted = false;
 
     // Log device info
-    console.log(`📱 Device: ${DeviceDetector.isAndroid() ? 'Android' : DeviceDetector.isIOS() ? 'iOS' : 'Desktop'}`);
+    console.log(
+      `📱 Device: ${DeviceDetector.isAndroid() ? "Android" : DeviceDetector.isIOS() ? "iOS" : "Desktop"}`,
+    );
 
     // --- 2. Setup UI (Head & Footer) ---
     UIService.setupHead(config);
