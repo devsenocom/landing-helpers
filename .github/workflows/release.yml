@@ -1,0 +1,70 @@
+name: Release helper.js
+
+# Создаёт новый релиз при каждом изменении helper.js в main:
+#  - вычисляет следующий тег (patch +1 от последнего semver-тега)
+#  - создаёт GitHub Release и помечает его как latest
+#  - делает purge latest-версии на jsDelivr
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'helper.js'
+
+# Нужны права на создание тегов и релизов
+permissions:
+  contents: write
+
+# Не запускать несколько релизов параллельно
+concurrency:
+  group: release-helper-js
+  cancel-in-progress: false
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # нужны все теги для вычисления версии
+
+      - name: Compute next version
+        id: version
+        run: |
+          # Последний тег вида X.Y.Z (игнорируем всё остальное, напр. "release")
+          latest="$(git tag -l | grep -E '^[0-9]+\.[0-9]+\.[0-9]+$' | sort -V | tail -n1)"
+          if [ -z "$latest" ]; then
+            next="0.0.1"
+          else
+            IFS='.' read -r major minor patch <<< "$latest"
+            next="${major}.${minor}.$((patch + 1))"
+          fi
+          echo "latest=$latest" >> "$GITHUB_OUTPUT"
+          echo "next=$next"     >> "$GITHUB_OUTPUT"
+          echo "Latest tag: ${latest:-<none>} -> next: $next"
+
+      - name: Create GitHub Release (marked as latest)
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release create "${{ steps.version.outputs.next }}" \
+            --target "${{ github.sha }}" \
+            --title "${{ steps.version.outputs.next }}" \
+            --latest \
+            --generate-notes
+
+      - name: Purge jsDelivr latest cache
+        run: |
+          for path in \
+            "https://purge.jsdelivr.net/gh/devsenocom/landing-helpers@latest/helper.js" \
+            "https://purge.jsdelivr.net/gh/devsenocom/landing-helpers/helper.js"
+          do
+            echo "Purging: $path"
+            code="$(curl -s -o /tmp/purge_resp.json -w '%{http_code}' "$path")"
+            echo "HTTP $code"
+            cat /tmp/purge_resp.json 2>/dev/null || true
+            echo
+          done
+          # Purge — best-effort: не роняем workflow, если jsDelivr ответил ошибкой
+          echo "jsDelivr purge requested (best-effort)."
