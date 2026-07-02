@@ -139,8 +139,6 @@ const AppConfig = (() => {
       game_url_ios: "https://apps.apple.com/eg/app/bvpn/id6766581158",
       analytics_url:
         "https://ingest.lu-analytics.com/preland_stats/blur_vpn/visits",
-      // Сбор атрибуции включён только для blur_vpn. При клике по кнопке
-      // формируется запрос на attribution_url со всеми URL-параметрами.
       send_attribution: true,
       attribution_url: "https://actions.lu-analytics.com/track/blur_vpn/",
       title: "Blur VPN",
