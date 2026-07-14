@@ -154,9 +154,9 @@ const AppConfig = (() => {
       ],
     },
     laguna_rosa: {
-      game_url: "https://lagunarosa.com/",
+      game_url: "https://enjoylix.com/api/v1/games/pg/conversion?insta_reg=true",
       game_url_android:
-        "https://laguna-rosa.store/baf9c4afc061758dd6229157735befa2/",
+        "https://enjoylix.com/api/v1/games/pg/conversion?insta_reg=true",
       analytics_url:
         "https://ingest.lu-analytics.com/preland_stats/laguna_rosa/visits",
       title: "Laguna Rosa",
