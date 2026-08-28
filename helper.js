@@ -10,6 +10,8 @@ const AppConfig = (() => {
     ell: "everlusting_life",
     aw: "lust_goddess",
     lg: "lust_goddess",
+    lg_enjoylix: "lust_goddess_enjoylix",
+    aw_enjoylix: "lust_goddess_enjoylix",
     aw_mirror: "lust_goddess_mirror",
     "aw-mirror": "lust_goddess_mirror",
     awmirror: "lust_goddess_mirror",
@@ -61,6 +63,23 @@ const AppConfig = (() => {
     lust_goddess: {
       game_url: "https://lustgoddess.com/play",
       game_url_android: "https://lustgoddess.com/play",
+      analytics_url:
+        "https://ingest.lu-analytics.com/preland_stats/adult_lyssa/visits",
+      title: "Lust Goddess",
+      icons: [
+        {
+          rel: "icon",
+          href: "https://cdn.jsdelivr.net/gh/devsenocom/landing-helpers@latest/aw/favicon.webp",
+          type: "image/webp",
+          sizes: "16x16",
+        },
+        // { rel: "icon", href: "/assets/favicon-32x32.png", type: "image/png", sizes: "32x32" },
+        // { rel: "apple-touch-icon", href: "/assets/apple-touch-icon.png", sizes: "180x180" },
+      ],
+    },
+    lust_goddess_enjoylix: {
+      game_url: "https://enjoylix.com/api/v1/games/aw/conversion?insta_reg=true",
+      game_url_android: "https://enjoylix.com/api/v1/games/aw/conversion?insta_reg=true",
       analytics_url:
         "https://ingest.lu-analytics.com/preland_stats/adult_lyssa/visits",
       title: "Lust Goddess",
