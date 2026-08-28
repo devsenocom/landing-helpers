@@ -63,6 +63,7 @@ const AppConfig = (() => {
     lust_goddess: {
       game_url: "https://lustgoddess.com/play",
       game_url_android: "https://lustgoddess.com/play",
+      game_url_ios: "https://onside.io/lust-goddess?variant=adult",
       analytics_url:
         "https://ingest.lu-analytics.com/preland_stats/adult_lyssa/visits",
       title: "Lust Goddess",
@@ -97,6 +98,7 @@ const AppConfig = (() => {
     lust_goddess_mirror: {
       game_url: "https://2025lustgoddess.com/play",
       game_url_android: "https://2025lustgoddess.com/play",
+      game_url_ios: "https://onside.io/lust-goddess?variant=adult",
       analytics_url:
         "https://ingest.lu-analytics.com/preland_stats/adult_lyssa/visits",
       title: "Lust Goddess",
