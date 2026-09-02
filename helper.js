@@ -29,6 +29,7 @@ const AppConfig = (() => {
     everlusting_life: {
       game_url: "https://everlustinglife.com/play",
       game_url_android: "https://everlustinglife.com/play",
+      game_url_ios: "https://onside.io/lust-goddess?variant=adult",
       analytics_url:
         "https://ingest.lu-analytics.com/preland_stats/adult_chess/visits",
       title: "Everlusting Life",
@@ -46,6 +47,7 @@ const AppConfig = (() => {
     everlusting_life_mirror: {
       game_url: "https://2025everlustinglife.com/play",
       game_url_android: "https://2025everlustinglife.com/play",
+      game_url_ios: "https://onside.io/lust-goddess?variant=adult",
       analytics_url:
         "https://ingest.lu-analytics.com/preland_stats/adult_chess/visits",
       title: "Everlusting Life",
@@ -81,6 +83,7 @@ const AppConfig = (() => {
     lust_goddess_enjoylix: {
       game_url: "https://enjoylix.com/api/v1/games/aw/conversion?insta_reg=true",
       game_url_android: "https://enjoylix.com/api/v1/games/aw/conversion?insta_reg=true",
+      game_url_ios: "https://onside.io/lust-goddess?variant=adult",
       analytics_url:
         "https://ingest.lu-analytics.com/preland_stats/adult_lyssa/visits",
       title: "Lust Goddess",
@@ -96,8 +99,8 @@ const AppConfig = (() => {
       ],
     },
     lust_goddess_mirror: {
-      game_url: "https://2025lustgoddess.com/play",
-      game_url_android: "https://2025lustgoddess.com/play",
+      game_url: "http://9999lustgoddess.com/play",
+      game_url_android: "http://9999lustgoddess.com/play",
       game_url_ios: "https://onside.io/lust-goddess?variant=adult",
       analytics_url:
         "https://ingest.lu-analytics.com/preland_stats/adult_lyssa/visits",
@@ -139,6 +142,7 @@ const AppConfig = (() => {
     lust_frontiers: {
       game_url: "https://www.lustfrontiers.com",
       game_url_android: "https://www.lustfrontiers.com",
+      game_url_ios: "https://onside.io/lust-goddess?variant=adult",
       analytics_url:
         "https://ingest.lu-analytics.com/preland_stats/lust_frontiers/visits",
       title: "Lust Frontiers",
@@ -178,6 +182,7 @@ const AppConfig = (() => {
       game_url: "https://enjoylix.com/api/v1/games/pg/conversion?insta_reg=true",
       game_url_android:
         "https://enjoylix.com/api/v1/games/pg/conversion?insta_reg=true",
+      game_url_ios: "https://onside.io/lust-goddess?variant=adult",
       analytics_url:
         "https://ingest.lu-analytics.com/preland_stats/laguna_rosa/visits",
       title: "Laguna Rosa",
