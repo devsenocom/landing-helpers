@@ -5,9 +5,6 @@
  */
 const AppConfig = (() => {
   const URL_MAPPER = {
-    ac: "everlusting_life",
-    el: "everlusting_life",
-    ell: "everlusting_life",
     aw: "lust_goddess",
     lg: "lust_goddess",
     lg_enjoylix: "lust_goddess_enjoylix",
@@ -16,10 +13,20 @@ const AppConfig = (() => {
     "aw-mirror": "lust_goddess_mirror",
     awmirror: "lust_goddess_mirror",
     awm: "lust_goddess_mirror",
+    
     pd: "prime_desire",
+    
     lf: "lust_frontiers",
+
     bv: "blur_vpn",
+    
     lr: "laguna_rosa",
+    
+    ac: "everlusting_life",
+    el: "everlusting_life",
+    ell: "everlusting_life",
+    ell_enjoylix: "everlusting_life_enjoylix",
+    ac_enjoylix: "everlusting_life_enjoylix",
     "ac-mirror": "everlusting_life_mirror",
     ac_mirror: "everlusting_life_mirror",
     acmirror: "everlusting_life_mirror",
@@ -37,6 +44,24 @@ const AppConfig = (() => {
         {
           rel: "icon",
           href: "https://cdn.jsdelivr.net/gh/devsenocom/landing-helpers@latest/ac/favicon.webp",
+          type: "image/webp",
+          sizes: "16x16",
+        },
+        // { rel: "icon", href: "/assets/favicon-32x32.png", type: "image/png", sizes: "32x32" },
+        // { rel: "apple-touch-icon", href: "/assets/apple-touch-icon.png", sizes: "180x180" },
+      ],
+    },
+    everlusting_life_enjoylix: {
+      game_url: "https://enjoylix.com/api/v1/games/ac/conversion?insta_reg=true",
+      game_url_android: "https://enjoylix.com/api/v1/games/ac/conversion?insta_reg=true",
+      game_url_ios: "https://onside.io/lust-goddess?variant=adult",
+      analytics_url:
+        "https://ingest.lu-analytics.com/preland_stats/adult_chess/visits",
+      title: "Lust Goddess",
+      icons: [
+        {
+          rel: "icon",
+          href: "https://cdn.jsdelivr.net/gh/devsenocom/landing-helpers@latest/aw/favicon.webp",
           type: "image/webp",
           sizes: "16x16",
         },
@@ -157,6 +182,7 @@ const AppConfig = (() => {
         // { rel: "apple-touch-icon", href: "/assets/apple-touch-icon.png", sizes: "180x180" },
       ],
     },
+
     blur_vpn: {
       game_url: "https://blur-vpn.com/",
       game_url_android:
