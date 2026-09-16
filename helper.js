@@ -24,7 +24,8 @@ const AppConfig = (() => {
     "lr": "laguna_rosa",
     "ac-mirror": "everlusting_life_mirror",
     "ac_mirror": "everlusting_life_mirror",
-    "acmirror": "everlusting_life_mirror"
+    "acmirror": "everlusting_life_mirror",
+    "xz": "xz"
   };
 
   const URL_CONFIG = {
@@ -194,6 +195,22 @@ const AppConfig = (() => {
         }
       ],
       "attribution_project": "laguna_rosa"
+    },
+    "xz": {
+      "title": "XxZz",
+      "game_url": "https://example.com/web",
+      "analytics_url": "https://example.com",
+      "attribution_project": "xz",
+      "game_url_android": "https://example.com/android",
+      "game_url_ios": "https://example.com/ios",
+      "icons": [
+        {
+          "rel": "icon",
+          "href": "wqe",
+          "type": "image/webp",
+          "sizes": "16x16"
+        }
+      ]
     }
   };
 
