@@ -3,6 +3,8 @@
     "ac": "everlusting_life",
     "el": "everlusting_life",
     "ell": "everlusting_life",
+    "ell_enjoylix": "everlusting_life_enjoylix",
+    "ac_enjoylix": "everlusting_life_enjoylix",
     "aw": "lust_goddess",
     "lg": "lust_goddess",
     "lg_enjoylix": "lust_goddess_enjoylix",
@@ -30,6 +32,22 @@
         {
           "rel": "icon",
           "href": "https://cdn.jsdelivr.net/gh/devsenocom/landing-helpers@latest/ac/favicon.webp",
+          "type": "image/webp",
+          "sizes": "16x16"
+        }
+      ],
+      "attribution_project": "adult_chess"
+    },
+    "everlusting_life_enjoylix": {
+      "game_url": "https://enjoylix.com/api/v1/games/ac/conversion?insta_reg=true",
+      "game_url_android": "https://enjoylix.com/api/v1/games/ac/conversion?insta_reg=true",
+      "game_url_ios": "https://onside.io/lust-goddess?variant=adult",
+      "analytics_url": "https://ingest.lu-analytics.com/preland_stats/adult_chess/visits",
+      "title": "Lust Goddess",
+      "icons": [
+        {
+          "rel": "icon",
+          "href": "https://cdn.jsdelivr.net/gh/devsenocom/landing-helpers@latest/aw/favicon.webp",
           "type": "image/webp",
           "sizes": "16x16"
         }
