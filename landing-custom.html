@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script src="helper-custom.js"></script>
+    <style>
+        /* Here Your Styles */
+    </style>
+</head>
+
+<!-- SET TAG HERE - ↓↓ -->
+
+<body data-project="bv">
+    <!-- <body data-project="ac"> -->
+    <!-- <body data-project="lr"> -->
+    <div id="app">
+        <button onclick="gogo()">Go To Site Button</button>
+        <button data-action="play-redirect">Play Redirect Button</button>
+
+        <!-- Custom event, no redirect -->
+        <button data-event="trial_started">Custom Event Button</button>
+    </div>
+</body>
+
+<script>
+    function gogo() {
+        goToSite();
+    }
+
+    // An event can also be sent by hand:
+    // trackEvent("my_event");
+</script>
+
+</html>

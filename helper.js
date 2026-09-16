@@ -5,196 +5,178 @@
  */
 const AppConfig = (() => {
   const URL_MAPPER = {
-    ac: "everlusting_life",
-    el: "everlusting_life",
-    ell: "everlusting_life",
-    aw: "lust_goddess",
-    lg: "lust_goddess",
-    lg_enjoylix: "lust_goddess_enjoylix",
-    aw_enjoylix: "lust_goddess_enjoylix",
-    aw_mirror: "lust_goddess_mirror",
+    "ac": "everlusting_life",
+    "el": "everlusting_life",
+    "ell": "everlusting_life",
+    "aw": "lust_goddess",
+    "lg": "lust_goddess",
+    "lg_enjoylix": "lust_goddess_enjoylix",
+    "aw_enjoylix": "lust_goddess_enjoylix",
+    "aw_mirror": "lust_goddess_mirror",
     "aw-mirror": "lust_goddess_mirror",
-    awmirror: "lust_goddess_mirror",
-    awm: "lust_goddess_mirror",
-    pd: "prime_desire",
-    lf: "lust_frontiers",
-    bv: "blur_vpn",
-    lr: "laguna_rosa",
+    "awmirror": "lust_goddess_mirror",
+    "awm": "lust_goddess_mirror",
+    "pd": "prime_desire",
+    "lf": "lust_frontiers",
+    "bv": "blur_vpn",
+    "lr": "laguna_rosa",
     "ac-mirror": "everlusting_life_mirror",
-    ac_mirror: "everlusting_life_mirror",
-    acmirror: "everlusting_life_mirror",
+    "ac_mirror": "everlusting_life_mirror",
+    "acmirror": "everlusting_life_mirror"
   };
 
   const URL_CONFIG = {
-    everlusting_life: {
-      game_url: "https://everlustinglife.com/play",
-      game_url_android: "https://everlustinglife.com/play",
-      game_url_ios: "https://onside.io/lust-goddess?variant=adult",
-      analytics_url:
-        "https://ingest.lu-analytics.com/preland_stats/adult_chess/visits",
-      title: "Everlusting Life",
-      icons: [
+    "everlusting_life": {
+      "game_url": "https://everlustinglife.com/play",
+      "game_url_android": "https://everlustinglife.com/play",
+      "game_url_ios": "https://onside.io/lust-goddess?variant=adult",
+      "analytics_url": "https://ingest.lu-analytics.com/preland_stats/adult_chess/visits",
+      "title": "Everlusting Life",
+      "icons": [
         {
-          rel: "icon",
-          href: "https://cdn.jsdelivr.net/gh/devsenocom/landing-helpers@latest/ac/favicon.webp",
-          type: "image/webp",
-          sizes: "16x16",
-        },
-        // { rel: "icon", href: "/assets/favicon-32x32.png", type: "image/png", sizes: "32x32" },
-        // { rel: "apple-touch-icon", href: "/assets/apple-touch-icon.png", sizes: "180x180" },
+          "rel": "icon",
+          "href": "https://cdn.jsdelivr.net/gh/devsenocom/landing-helpers@latest/ac/favicon.webp",
+          "type": "image/webp",
+          "sizes": "16x16"
+        }
       ],
+      "attribution_project": "adult_chess"
     },
-    everlusting_life_mirror: {
-      game_url: "https://2025everlustinglife.com/play",
-      game_url_android: "https://2025everlustinglife.com/play",
-      game_url_ios: "https://onside.io/lust-goddess?variant=adult",
-      analytics_url:
-        "https://ingest.lu-analytics.com/preland_stats/adult_chess/visits",
-      title: "Everlusting Life",
-      icons: [
+    "everlusting_life_mirror": {
+      "game_url": "https://2025everlustinglife.com/play",
+      "game_url_android": "https://2025everlustinglife.com/play",
+      "game_url_ios": "https://onside.io/lust-goddess?variant=adult",
+      "analytics_url": "https://ingest.lu-analytics.com/preland_stats/adult_chess/visits",
+      "title": "Everlusting Life",
+      "icons": [
         {
-          rel: "icon",
-          href: "https://cdn.jsdelivr.net/gh/devsenocom/landing-helpers@latest/ac/favicon.webp",
-          type: "image/webp",
-          sizes: "16x16",
-        },
-        // { rel: "icon", href: "/assets/favicon-32x32.png", type: "image/png", sizes: "32x32" },
-        // { rel: "apple-touch-icon", href: "/assets/apple-touch-icon.png", sizes: "180x180" },
+          "rel": "icon",
+          "href": "https://cdn.jsdelivr.net/gh/devsenocom/landing-helpers@latest/ac/favicon.webp",
+          "type": "image/webp",
+          "sizes": "16x16"
+        }
       ],
+      "attribution_project": "adult_chess"
     },
-    lust_goddess: {
-      game_url: "https://lustgoddess.com/play",
-      game_url_android: "https://lustgoddess.com/play",
-      game_url_ios: "https://onside.io/lust-goddess?variant=adult",
-      analytics_url:
-        "https://ingest.lu-analytics.com/preland_stats/adult_lyssa/visits",
-      title: "Lust Goddess",
-      icons: [
+    "lust_goddess": {
+      "game_url": "https://lustgoddess.com/play",
+      "game_url_android": "https://lustgoddess.com/play",
+      "game_url_ios": "https://onside.io/lust-goddess?variant=adult",
+      "analytics_url": "https://ingest.lu-analytics.com/preland_stats/adult_lyssa/visits",
+      "title": "Lust Goddess",
+      "icons": [
         {
-          rel: "icon",
-          href: "https://cdn.jsdelivr.net/gh/devsenocom/landing-helpers@latest/aw/favicon.webp",
-          type: "image/webp",
-          sizes: "16x16",
-        },
-        // { rel: "icon", href: "/assets/favicon-32x32.png", type: "image/png", sizes: "32x32" },
-        // { rel: "apple-touch-icon", href: "/assets/apple-touch-icon.png", sizes: "180x180" },
+          "rel": "icon",
+          "href": "https://cdn.jsdelivr.net/gh/devsenocom/landing-helpers@latest/aw/favicon.webp",
+          "type": "image/webp",
+          "sizes": "16x16"
+        }
       ],
+      "attribution_project": "adult_lyssa"
     },
-    lust_goddess_enjoylix: {
-      game_url: "https://enjoylix.com/api/v1/games/aw/conversion?insta_reg=true",
-      game_url_android: "https://enjoylix.com/api/v1/games/aw/conversion?insta_reg=true",
-      game_url_ios: "https://onside.io/lust-goddess?variant=adult",
-      analytics_url:
-        "https://ingest.lu-analytics.com/preland_stats/adult_lyssa/visits",
-      title: "Lust Goddess",
-      icons: [
+    "lust_goddess_enjoylix": {
+      "game_url": "https://enjoylix.com/api/v1/games/aw/conversion?insta_reg=true",
+      "game_url_android": "https://enjoylix.com/api/v1/games/aw/conversion?insta_reg=true",
+      "game_url_ios": "https://onside.io/lust-goddess?variant=adult",
+      "analytics_url": "https://ingest.lu-analytics.com/preland_stats/adult_lyssa/visits",
+      "title": "Lust Goddess",
+      "icons": [
         {
-          rel: "icon",
-          href: "https://cdn.jsdelivr.net/gh/devsenocom/landing-helpers@latest/aw/favicon.webp",
-          type: "image/webp",
-          sizes: "16x16",
-        },
-        // { rel: "icon", href: "/assets/favicon-32x32.png", type: "image/png", sizes: "32x32" },
-        // { rel: "apple-touch-icon", href: "/assets/apple-touch-icon.png", sizes: "180x180" },
+          "rel": "icon",
+          "href": "https://cdn.jsdelivr.net/gh/devsenocom/landing-helpers@latest/aw/favicon.webp",
+          "type": "image/webp",
+          "sizes": "16x16"
+        }
       ],
+      "attribution_project": "adult_lyssa"
     },
-    lust_goddess_mirror: {
-      game_url: "http://9999lustgoddess.com/play",
-      game_url_android: "http://9999lustgoddess.com/play",
-      game_url_ios: "https://onside.io/lust-goddess?variant=adult",
-      analytics_url:
-        "https://ingest.lu-analytics.com/preland_stats/adult_lyssa/visits",
-      title: "Lust Goddess",
-      icons: [
+    "lust_goddess_mirror": {
+      "game_url": "http://9999lustgoddess.com/play",
+      "game_url_android": "http://9999lustgoddess.com/play",
+      "game_url_ios": "https://onside.io/lust-goddess?variant=adult",
+      "analytics_url": "https://ingest.lu-analytics.com/preland_stats/adult_lyssa/visits",
+      "title": "Lust Goddess",
+      "icons": [
         {
-          rel: "icon",
-          href: "/assets/favicon-32x32.png",
-          type: "image/webp",
-          sizes: "16x16",
-        },
-        // { rel: "icon", href: "/assets/favicon-32x32.png", type: "image/png", sizes: "32x32" },
-        // { rel: "apple-touch-icon", href: "/assets/apple-touch-icon.png", sizes: "180x180" },
+          "rel": "icon",
+          "href": "/assets/favicon-32x32.png",
+          "type": "image/webp",
+          "sizes": "16x16"
+        }
       ],
+      "attribution_project": "adult_lyssa"
     },
-    prime_desire: {
-      game_url: "https://www.prime-desire.com",
-      game_url_android:
-        "https://prime-desire.store/d41d8cd98f00b204e9800998ecf8427e/",
-      analytics_url:
-        "https://ingest.lu-analytics.com/preland_stats/prime_desire/visits",
-      title: "Prime Desire",
-      icons: [
+    "prime_desire": {
+      "game_url": "https://www.prime-desire.com",
+      "game_url_android": "https://prime-desire.store/d41d8cd98f00b204e9800998ecf8427e/",
+      "analytics_url": "https://ingest.lu-analytics.com/preland_stats/prime_desire/visits",
+      "title": "Prime Desire",
+      "icons": [
         {
-          rel: "icon",
-          href: "https://cdn.jsdelivr.net/gh/devsenocom/landing-helpers@latest/pd/favicon.webp",
-          type: "image/webp",
-          sizes: "16x16",
+          "rel": "icon",
+          "href": "https://cdn.jsdelivr.net/gh/devsenocom/landing-helpers@latest/pd/favicon.webp",
+          "type": "image/webp",
+          "sizes": "16x16"
         },
         {
-          rel: "icon",
-          href: "https://cdn.jsdelivr.net/gh/devsenocom/landing-helpers@latest/pd/favicon-32x32.webp",
-          type: "image/webp",
-          sizes: "32x32",
-        },
-        // { rel: "apple-touch-icon", href: "/assets/apple-touch-icon.png", sizes: "180x180" },
+          "rel": "icon",
+          "href": "https://cdn.jsdelivr.net/gh/devsenocom/landing-helpers@latest/pd/favicon-32x32.webp",
+          "type": "image/webp",
+          "sizes": "32x32"
+        }
       ],
+      "attribution_project": "prime_desire"
     },
-    lust_frontiers: {
-      game_url: "https://www.lustfrontiers.com",
-      game_url_android: "https://www.lustfrontiers.com",
-      game_url_ios: "https://onside.io/lust-goddess?variant=adult",
-      analytics_url:
-        "https://ingest.lu-analytics.com/preland_stats/lust_frontiers/visits",
-      title: "Lust Frontiers",
-      icons: [
+    "lust_frontiers": {
+      "game_url": "https://www.lustfrontiers.com",
+      "game_url_android": "https://www.lustfrontiers.com",
+      "game_url_ios": "https://onside.io/lust-goddess?variant=adult",
+      "analytics_url": "https://ingest.lu-analytics.com/preland_stats/lust_frontiers/visits",
+      "title": "Lust Frontiers",
+      "icons": [
         {
-          rel: "icon",
-          href: "https://cdn.jsdelivr.net/gh/devsenocom/landing-helpers@latest/lf/favicon.webp",
-          type: "image/webp",
-          sizes: "16x16",
-        },
-        // { rel: "icon", href: "/assets/favicon-32x32.png", type: "image/png", sizes: "32x32" },
-        // { rel: "apple-touch-icon", href: "/assets/apple-touch-icon.png", sizes: "180x180" },
+          "rel": "icon",
+          "href": "https://cdn.jsdelivr.net/gh/devsenocom/landing-helpers@latest/lf/favicon.webp",
+          "type": "image/webp",
+          "sizes": "16x16"
+        }
       ],
+      "attribution_project": "lust_frontiers"
     },
-    blur_vpn: {
-      game_url: "https://blur-vpn.com/",
-      game_url_android:
-        "https://play.google.com/store/apps/details?id=com.senocomltd.bvpn",
-      game_url_ios: "https://apps.apple.com/eg/app/bvpn/id6766581158",
-      analytics_url:
-        "https://ingest.lu-analytics.com/preland_stats/blur_vpn/visits",
-      send_attribution: true,
-      attribution_url: "https://actions.lu-analytics.com/track/blur_vpn/",
-      title: "Blur VPN",
-      icons: [
+    "blur_vpn": {
+      "game_url": "https://blur-vpn.com/",
+      "game_url_android": "https://play.google.com/store/apps/details?id=com.senocomltd.bvpn",
+      "game_url_ios": "https://apps.apple.com/eg/app/bvpn/id6766581158",
+      "analytics_url": "https://ingest.lu-analytics.com/preland_stats/blur_vpn/visits",
+      "send_attribution": true,
+      "attribution_url": "https://actions.lu-analytics.com/track/blur_vpn/",
+      "title": "Blur VPN",
+      "icons": [
         {
-          rel: "icon",
-          href: "https://cdn.jsdelivr.net/gh/devsenocom/landing-helpers@latest/bv/favicon.webp",
-          type: "image/webp",
-          sizes: "16x16",
-        },
-        // { rel: "icon", href: "/assets/favicon-32x32.png", type: "image/png", sizes: "32x32" },
-        // { rel: "apple-touch-icon", href: "/assets/apple-touch-icon.png", sizes: "180x180" },
+          "rel": "icon",
+          "href": "https://cdn.jsdelivr.net/gh/devsenocom/landing-helpers@latest/bv/favicon.webp",
+          "type": "image/webp",
+          "sizes": "16x16"
+        }
       ],
+      "attribution_project": "blur_vpn"
     },
-    laguna_rosa: {
-      game_url: "https://enjoylix.com/api/v1/games/pg/conversion?insta_reg=true",
-      game_url_android:
-        "https://enjoylix.com/api/v1/games/pg/conversion?insta_reg=true",
-      game_url_ios: "https://onside.io/lust-goddess?variant=adult",
-      analytics_url:
-        "https://ingest.lu-analytics.com/preland_stats/laguna_rosa/visits",
-      title: "Laguna Rosa",
-      icons: [
+    "laguna_rosa": {
+      "game_url": "https://enjoylix.com/api/v1/games/pg/conversion?insta_reg=true",
+      "game_url_android": "https://enjoylix.com/api/v1/games/pg/conversion?insta_reg=true",
+      "game_url_ios": "https://onside.io/lust-goddess?variant=adult",
+      "analytics_url": "https://ingest.lu-analytics.com/preland_stats/laguna_rosa/visits",
+      "title": "Laguna Rosa",
+      "icons": [
         {
-          rel: "icon",
-          href: "https://cdn.jsdelivr.net/gh/devsenocom/landing-helpers@latest/lr/favicon.webp",
-          type: "image/webp",
-          sizes: "16x16",
-        },
+          "rel": "icon",
+          "href": "https://cdn.jsdelivr.net/gh/devsenocom/landing-helpers@latest/lr/favicon.webp",
+          "type": "image/webp",
+          "sizes": "16x16"
+        }
       ],
-    },
+      "attribution_project": "laguna_rosa"
+    }
   };
 
   // get config from data-project
@@ -248,7 +230,7 @@ class DeviceDetector {
 // Service: Handling UI (DOM Manipulation)
 class UIService {
   /**
-   * Инъекция мета-тегов, иконок и заголовка в <head>
+   * Injects meta tags, icons and the title into <head>
    */
   static setupHead(config) {
     // 1. Set Title
@@ -559,7 +541,9 @@ const initApp = async () => {
       //   utmFull,
       // );
 
-      // Fire attribution (non-blocking) — only when enabled in config
+      // Fire attribution (non-blocking) — only when enabled in config.
+      // LEGACY: new custom landings should load helper-custom.js, where the
+      // event is always sent. This flag survives here only for bv.
       if (config.send_attribution) {
         AnalyticsService.sendAttribution(config.attribution_url, params);
       }
@@ -579,9 +563,9 @@ const initApp = async () => {
         '[data-action="play-redirect"]',
       );
       buttons.forEach((btn) => {
-        // Удаляем старые листенеры (на всякий случай) и ставим новые
+        // Drop any previous listeners (just in case) and set fresh ones
         btn.onclick = (e) => {
-          e.preventDefault(); // Если это ссылка <a>, не переходим по href
+          e.preventDefault(); // If this is an <a>, don't follow its href
           executeRedirect("click");
         };
       });

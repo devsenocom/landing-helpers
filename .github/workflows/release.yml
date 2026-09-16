@@ -1,23 +1,30 @@
-name: Release helper.js
+name: Release helpers
 
-# Создаёт новый релиз при каждом изменении helper.js в main:
-#  - вычисляет следующий тег (patch +1 от последнего semver-тега)
-#  - создаёт GitHub Release и помечает его как latest
-#  - делает purge latest-версии на jsDelivr
+# Cuts a new release whenever the helper sources change in main:
+#  - rebuilds helper.js / helper-custom.js from projects.json
+#  - commits the rebuilt files (jsDelivr serves repo content at a tag,
+#    so the artifacts have to be in the tree the tag points at)
+#  - computes the next tag (patch +1 from the latest semver tag)
+#  - creates a GitHub Release and marks it as latest
+#  - purges the latest version on jsDelivr
 
 on:
   push:
     branches: [main]
     paths:
+      - 'projects.json'
+      - 'src/**'
+      - 'build.js'
       - 'helper.js'
+      - 'helper-custom.js'
 
-# Нужны права на создание тегов и релизов
+# Needs permission to create tags, commits and releases
 permissions:
   contents: write
 
-# Не запускать несколько релизов параллельно
+# Never run two releases in parallel
 concurrency:
-  group: release-helper-js
+  group: release-helpers
   cancel-in-progress: false
 
 jobs:
@@ -27,12 +34,41 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0   # нужны все теги для вычисления версии
+          fetch-depth: 0   # all tags are needed to compute the version
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Build helpers from projects.json
+        # Fails the whole run if projects.json is invalid, so a broken config
+        # can never reach the CDN.
+        run: node build.js
+
+      - name: Commit rebuilt helpers
+        id: build_commit
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          if git diff --quiet -- helper.js helper-custom.js; then
+            echo "Built files already match the commit - nothing to push."
+          else
+            echo "Built files changed - committing."
+            git add helper.js helper-custom.js
+            git commit -m "build: regenerate helpers from projects.json"
+            # A push authenticated with GITHUB_TOKEN does not re-trigger
+            # workflows, so this cannot loop back into another release.
+            git push origin HEAD:main
+          fi
+
+          echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
 
       - name: Compute next version
         id: version
         run: |
-          # Последний тег вида X.Y.Z (игнорируем всё остальное, напр. "release")
+          # Latest tag shaped X.Y.Z (ignore everything else, e.g. "release")
           latest="$(git tag -l | grep -E '^[0-9]+\.[0-9]+\.[0-9]+$' | sort -V | tail -n1)"
           if [ -z "$latest" ]; then
             next="0.0.1"
@@ -49,7 +85,7 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           gh release create "${{ steps.version.outputs.next }}" \
-            --target "${{ github.sha }}" \
+            --target "${{ steps.build_commit.outputs.sha }}" \
             --title "${{ steps.version.outputs.next }}" \
             --latest \
             --generate-notes
@@ -58,7 +94,9 @@ jobs:
         run: |
           for path in \
             "https://purge.jsdelivr.net/gh/devsenocom/landing-helpers@latest/helper.js" \
-            "https://purge.jsdelivr.net/gh/devsenocom/landing-helpers/helper.js"
+            "https://purge.jsdelivr.net/gh/devsenocom/landing-helpers/helper.js" \
+            "https://purge.jsdelivr.net/gh/devsenocom/landing-helpers@latest/helper-custom.js" \
+            "https://purge.jsdelivr.net/gh/devsenocom/landing-helpers/helper-custom.js"
           do
             echo "Purging: $path"
             code="$(curl -s -o /tmp/purge_resp.json -w '%{http_code}' "$path")"
@@ -66,5 +104,5 @@ jobs:
             cat /tmp/purge_resp.json 2>/dev/null || true
             echo
           done
-          # Purge — best-effort: не роняем workflow, если jsDelivr ответил ошибкой
+          # Purge is best-effort: don't fail the workflow if jsDelivr errors out
           echo "jsDelivr purge requested (best-effort)."
