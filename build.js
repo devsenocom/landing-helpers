@@ -32,8 +32,13 @@ const REQUIRED_FIELDS = [
   "game_url_android",
   "analytics_url",
   "attribution_project",
+  "landing_path_code",
   "title",
 ];
+
+// landing_path_code is read by external services as a path segment, so it must
+// stay URL-safe. Several projects sharing one value is normal and expected.
+const LANDING_PATH_CODE = /^[a-z0-9][a-z0-9._/-]*$/;
 
 function fail(message) {
   console.error(`✗ ${message}`);
@@ -94,6 +99,15 @@ function validate(data) {
         );
       }
     }
+    if (
+      typeof project.landing_path_code === "string" &&
+      !LANDING_PATH_CODE.test(project.landing_path_code)
+    ) {
+      errors.push(
+        `project "${name}".landing_path_code must be lowercase and URL-safe, got "${project.landing_path_code}"`,
+      );
+    }
+
     if (project.icons !== undefined && !Array.isArray(project.icons)) {
       errors.push(`project "${name}".icons must be an array`);
     }

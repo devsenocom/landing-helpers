@@ -34,6 +34,7 @@ const AppConfig = (() => {
       "game_url_ios": "https://onside.io/lust-goddess?variant=adult",
       "analytics_url": "https://ingest.lu-analytics.com/preland_stats/adult_chess/visits",
       "title": "Everlusting Life",
+      "landing_path_code": "everlustinglife",
       "icons": [
         {
           "rel": "icon",
@@ -50,6 +51,7 @@ const AppConfig = (() => {
       "game_url_ios": "https://onside.io/lust-goddess?variant=adult",
       "analytics_url": "https://ingest.lu-analytics.com/preland_stats/adult_chess/visits",
       "title": "Lust Goddess",
+      "landing_path_code": "everlustinglife",
       "icons": [
         {
           "rel": "icon",
@@ -66,6 +68,7 @@ const AppConfig = (() => {
       "game_url_ios": "https://onside.io/lust-goddess?variant=adult",
       "analytics_url": "https://ingest.lu-analytics.com/preland_stats/adult_chess/visits",
       "title": "Everlusting Life",
+      "landing_path_code": "everlustinglife",
       "icons": [
         {
           "rel": "icon",
@@ -82,6 +85,7 @@ const AppConfig = (() => {
       "game_url_ios": "https://onside.io/lust-goddess?variant=adult",
       "analytics_url": "https://ingest.lu-analytics.com/preland_stats/adult_lyssa/visits",
       "title": "Lust Goddess",
+      "landing_path_code": "lustgoddess",
       "icons": [
         {
           "rel": "icon",
@@ -98,6 +102,7 @@ const AppConfig = (() => {
       "game_url_ios": "https://onside.io/lust-goddess?variant=adult",
       "analytics_url": "https://ingest.lu-analytics.com/preland_stats/adult_lyssa/visits",
       "title": "Lust Goddess",
+      "landing_path_code": "lustgoddess",
       "icons": [
         {
           "rel": "icon",
@@ -114,6 +119,7 @@ const AppConfig = (() => {
       "game_url_ios": "https://onside.io/lust-goddess?variant=adult",
       "analytics_url": "https://ingest.lu-analytics.com/preland_stats/adult_lyssa/visits",
       "title": "Lust Goddess",
+      "landing_path_code": "lustgoddess",
       "icons": [
         {
           "rel": "icon",
@@ -129,6 +135,7 @@ const AppConfig = (() => {
       "game_url_android": "https://prime-desire.store/d41d8cd98f00b204e9800998ecf8427e/",
       "analytics_url": "https://ingest.lu-analytics.com/preland_stats/prime_desire/visits",
       "title": "Prime Desire",
+      "landing_path_code": "primedesire",
       "icons": [
         {
           "rel": "icon",
@@ -151,6 +158,7 @@ const AppConfig = (() => {
       "game_url_ios": "https://onside.io/lust-goddess?variant=adult",
       "analytics_url": "https://ingest.lu-analytics.com/preland_stats/lust_frontiers/visits",
       "title": "Lust Frontiers",
+      "landing_path_code": "lustfrontiers",
       "icons": [
         {
           "rel": "icon",
@@ -169,6 +177,7 @@ const AppConfig = (() => {
       "send_attribution": true,
       "attribution_url": "https://actions.lu-analytics.com/track/blur_vpn/",
       "title": "Blur VPN",
+      "landing_path_code": "blurvpn",
       "icons": [
         {
           "rel": "icon",
@@ -185,6 +194,7 @@ const AppConfig = (() => {
       "game_url_ios": "https://onside.io/lust-goddess?variant=adult",
       "analytics_url": "https://ingest.lu-analytics.com/preland_stats/laguna_rosa/visits",
       "title": "Laguna Rosa",
+      "landing_path_code": "lagunarosa",
       "icons": [
         {
           "rel": "icon",

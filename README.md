@@ -88,9 +88,15 @@ node build.js --check  # проверяет, что артефакты не ра
 - `projects` — конфиг проекта (бывший `URL_CONFIG`).
 
 Обязательные поля проекта: `game_url`, `game_url_android`, `analytics_url`,
-`attribution_project`, `title`. `build.js` падает, если какого-то нет, если
-алиас указывает на несуществующий проект или если URL не http(s) — битый конфиг
-не доедет до CDN.
+`attribution_project`, `landing_path_code`, `title`. `build.js` падает, если
+какого-то нет, если алиас указывает на несуществующий проект или если URL не
+http(s) — битый конфиг не доедет до CDN.
+
+`landing_path_code` — путь к лендингу, которым пользуются сторонние сервисы.
+Значение **намеренно не уникально**: зеркала и enjoylix-варианты одного проекта
+делят общий путь. Сейчас используются шесть: `everlustinglife`, `lustgoddess`,
+`lagunarosa`, `blurvpn`, `lustfrontiers`, `primedesire`. Проверяется на
+URL-безопасность (нижний регистр, без пробелов).
 
 Поля `send_attribution` и `attribution_url` у `blur_vpn` — легаси ради обратной
 совместимости `helper.js`; `helper-custom.js` их игнорирует и собирает эндпоинт
