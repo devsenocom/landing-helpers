@@ -48,7 +48,8 @@
       "lr": "laguna_rosa",
       "ac-mirror": "everlusting_life_mirror",
       "ac_mirror": "everlusting_life_mirror",
-      "acmirror": "everlusting_life_mirror"
+      "acmirror": "everlusting_life_mirror",
+      "ly_steam": "lyssa"
     };
 
     // attribution_project — the project slug used in analytics (the same one as in analytics_url).
@@ -230,6 +231,24 @@
           }
         ],
         "attribution_project": "laguna_rosa"
+      },
+      "lyssa": {
+        "title": "Lyssa",
+        "game_url": "https://store.steampowered.com/app/5096020/LYSSA_Goddess_of_Rage/",
+        "game_url_android": "https://store.steampowered.com/app/5096020/LYSSA_Goddess_of_Rage/",
+        "analytics_url": "https://ingest.lu-analytics.com/preland_stats/lyssa/visits",
+        "attribution_project": "lyssa",
+        "game_url_ios": "https://store.steampowered.com/app/5096020/LYSSA_Goddess_of_Rage/",
+        "attribution_event": "install",
+        "icons": [
+          {
+            "rel": "icon",
+            "href": "https://cdn.jsdelivr.net/gh/devsenocom/landing-helpers@latest/lyssa/favicon.webp",
+            "type": "image/webp",
+            "sizes": "16x16"
+          }
+        ],
+        "landing_path_code": "lyssa"
       }
     };
 
