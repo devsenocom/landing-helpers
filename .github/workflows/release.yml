@@ -1,22 +1,26 @@
 name: Release helpers
 
-# Cuts a new release whenever the helper sources change in main:
+# Cuts a new release whenever anything the CDN serves changes in main:
 #  - rebuilds helper.js / helper-custom.js from projects.json
 #  - commits the rebuilt files (jsDelivr serves repo content at a tag,
 #    so the artifacts have to be in the tree the tag points at)
 #  - computes the next tag (patch +1 from the latest semver tag)
 #  - creates a GitHub Release and marks it as latest
-#  - purges the latest version on jsDelivr
+#  - purges the changed files on jsDelivr
 
 on:
   push:
     branches: [main]
-    paths:
-      - 'projects.json'
-      - 'src/**'
-      - 'build.js'
-      - 'helper.js'
-      - 'helper-custom.js'
+    # Everything in this repo is CDN content, so the trigger is an exclude list
+    # rather than an include list: a brand new project folder (say lyssa/favicon.webp)
+    # must cut a release on its own, without anyone remembering to extend a path list.
+    # Files that are never served are listed here instead.
+    paths-ignore:
+      - '**/*.md'
+      - '.github/**'
+      - '.vscode/**'
+      - '.gitignore'
+      - '.gitattributes'
 
 # Needs permission to create tags, commits and releases
 permissions:
@@ -91,18 +95,37 @@ jobs:
             --generate-notes
 
       - name: Purge jsDelivr latest cache
+        env:
+          BEFORE: ${{ github.event.before }}
+          AFTER: ${{ github.sha }}
         run: |
-          for path in \
-            "https://purge.jsdelivr.net/gh/devsenocom/landing-helpers@latest/helper.js" \
-            "https://purge.jsdelivr.net/gh/devsenocom/landing-helpers/helper.js" \
-            "https://purge.jsdelivr.net/gh/devsenocom/landing-helpers@latest/helper-custom.js" \
-            "https://purge.jsdelivr.net/gh/devsenocom/landing-helpers/helper-custom.js"
-          do
-            echo "Purging: $path"
-            code="$(curl -s -o /tmp/purge_resp.json -w '%{http_code}' "$path")"
-            echo "HTTP $code"
-            cat /tmp/purge_resp.json 2>/dev/null || true
-            echo
+          # The two helpers always get purged: the build step may have just
+          # rewritten them.
+          files="helper.js helper-custom.js"
+
+          # Everything else that this push touched - a replaced favicon would
+          # otherwise sit in the CDN cache under the old bytes.
+          zero="0000000000000000000000000000000000000000"
+          if [ -n "$BEFORE" ] && [ "$BEFORE" != "$zero" ] && git cat-file -e "$BEFORE^{commit}" 2>/dev/null; then
+            changed="$(git diff --name-only "$BEFORE" "$AFTER" \
+              | grep -v -E '^\.github/|^\.vscode/|\.md$|^\.git(ignore|attributes)$' || true)"
+            files="$files $changed"
+          else
+            echo "No usable diff base - purging the helpers only."
+          fi
+
+          files="$(printf '%s\n' $files | sort -u)"
+          echo "Purging:"
+          printf '  %s\n' $files
+
+          for file in $files; do
+            for path in \
+              "https://purge.jsdelivr.net/gh/devsenocom/landing-helpers@latest/$file" \
+              "https://purge.jsdelivr.net/gh/devsenocom/landing-helpers/$file"
+            do
+              code="$(curl -s -o /tmp/purge_resp.json -w '%{http_code}' "$path")"
+              echo "  HTTP $code  $path"
+            done
           done
           # Purge is best-effort: don't fail the workflow if jsDelivr errors out
           echo "jsDelivr purge requested (best-effort)."
