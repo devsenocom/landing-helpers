@@ -234,6 +234,7 @@
       },
       "lyssa": {
         "title": "Lyssa",
+        "landing_path_code": "lyssa",
         "game_url": "https://store.steampowered.com/app/5096020/LYSSA_Goddess_of_Rage/",
         "game_url_android": "https://store.steampowered.com/app/5096020/LYSSA_Goddess_of_Rage/",
         "analytics_url": "https://ingest.lu-analytics.com/preland_stats/lyssa/visits",
@@ -247,8 +248,7 @@
             "type": "image/webp",
             "sizes": "16x16"
           }
-        ],
-        "landing_path_code": "lyssa"
+        ]
       }
     };
 
