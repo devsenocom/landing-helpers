@@ -217,7 +217,8 @@
           "sizes": "16x16"
         }
       ],
-      "landing_path_code": "lyssa"
+      "send_attribution": true,
+      "attribution_url": "https://actions.lu-analytics.com/track/lyssa/"
     }
   }
 }
