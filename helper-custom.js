@@ -248,7 +248,9 @@
             "type": "image/webp",
             "sizes": "16x16"
           }
-        ]
+        ],
+        "send_attribution": true,
+        "attribution_url": "https://actions.lu-analytics.com/track/lyssa/"
       }
     };
 
