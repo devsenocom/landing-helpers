@@ -487,6 +487,19 @@
         );
         const delay = Number.isFinite(rawDelay) && rawDelay > 0 ? rawDelay : 0;
         console.log(`⏩ Auto-redirect enabled (delay: ${delay}ms)`);
+
+        // Count the page load in our own ingest so we can compare "how many
+        // landed here" against the custom events that actually reach the
+        // table. Fired up front (before the delay) so a bounce during the
+        // wait is still counted; counter.dev keeps running in parallel.
+        AnalyticsService.send(
+          config.analytics_url,
+          originalReferrer,
+          "visit",
+          originalUrl,
+          utmFull,
+        );
+
         if (delay > 0) {
           setTimeout(() => executeRedirect("auto"), delay);
         } else {
