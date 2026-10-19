@@ -81,8 +81,8 @@ const AppConfig = (() => {
       "attribution_project": "adult_chess"
     },
     "lust_goddess": {
-      "game_url": "https://lustgoddess.com/play",
-      "game_url_android": "https://lustgoddess.com/play",
+      "game_url": "https://enjoylix.com/api/v1/games/aw/conversion?insta_reg=true",
+      "game_url_android": "https://enjoylix.com/api/v1/games/aw/conversion?insta_reg=true",
       "game_url_ios": "https://onside.io/lust-goddess?variant=adult",
       "analytics_url": "https://ingest.lu-analytics.com/preland_stats/adult_lyssa/visits",
       "title": "Lust Goddess",
@@ -222,7 +222,9 @@ const AppConfig = (() => {
           "type": "image/webp",
           "sizes": "16x16"
         }
-      ]
+      ],
+      "send_attribution": true,
+      "attribution_url": "https://actions.lu-analytics.com/track/lyssa/"
     }
   };
 
