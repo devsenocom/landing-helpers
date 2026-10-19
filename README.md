@@ -41,6 +41,22 @@ API:
 Имя события по умолчанию — `install`, переопределяется полем `attribution_event`
 в конфиге проекта.
 
+### Фаст-редирект (лендинг без кнопки)
+
+Для «пустой страницы» / страницы с надписью `Redirecting…`, которая сама шлёт
+событие и уводит пользователя, есть атрибуты на `<body>` (только
+`helper-custom.js`):
+
+| Атрибут | Что делает |
+| --- | --- |
+| `data-auto-redirect` | на загрузке шлёт кастом-событие, затем редиректит по платформе — тот же путь, что и клик по кнопке |
+| `data-redirect-delay="600"` | необязательная пауза в мс перед уходом (чтобы экран успел отрисоваться); по умолчанию `0` |
+
+Событие (`keepalive`-fetch) успевает уйти до навигации, платформа выбирается
+как обычно: `game_url_android` / `game_url_ios` / `game_url`. Шаблон —
+[landing-redirect.html](landing-redirect.html); для BlurVPN это
+`<body data-project="bv" data-auto-redirect>`.
+
 ## Подключение проекта
 
 Код проекта задаётся атрибутом на `<body>`:
@@ -49,7 +65,7 @@ API:
 <body data-project="bv">
 ```
 
-Шаблоны: [landing.html](landing.html) (обычный), [landing-custom.html](landing-custom.html) (кастомный).
+Шаблоны: [landing.html](landing.html) (обычный), [landing-custom.html](landing-custom.html) (кастомный), [landing-redirect.html](landing-redirect.html) (фаст-редирект).
 
 ## Конфиги проектов
 

@@ -472,6 +472,28 @@
           { once: true, passive: true },
         ),
       );
+
+      // E. Fast-redirect landings: no button, the page redirects on its own.
+      //    Enabled with <body data-auto-redirect>. The custom event is fired
+      //    first (keepalive fetch survives the navigation), then the visitor
+      //    is sent to the platform-specific URL — same path as a click.
+      //    An optional <body data-redirect-delay="800"> waits that many
+      //    milliseconds before leaving (e.g. to let a "redirecting" screen
+      //    paint); it defaults to 0.
+      if (document.body.hasAttribute("data-auto-redirect")) {
+        const rawDelay = parseInt(
+          document.body.getAttribute("data-redirect-delay"),
+          10,
+        );
+        const delay = Number.isFinite(rawDelay) && rawDelay > 0 ? rawDelay : 0;
+        console.log(`⏩ Auto-redirect enabled (delay: ${delay}ms)`);
+        if (delay > 0) {
+          setTimeout(() => executeRedirect("auto"), delay);
+        } else {
+          executeRedirect("auto");
+        }
+      }
+
       console.log(`✅ Custom app initialized for: ${config.title}`);
     } catch (err) {
       console.error("🔥 Custom App Init Error:", err);
