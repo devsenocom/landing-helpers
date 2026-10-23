@@ -236,7 +236,7 @@
      * Shares one counter across all landing domains.
      */
     static injectYandexMetrika() {
-      const counterId = 110342910;
+      const counterId = 113721746;
       const tagSrc = `https://mc.yandex.ru/metrika/tag.js?id=${counterId}`;
 
       // Bootstrap the ym() queue (same shape as the official snippet).
@@ -258,7 +258,6 @@
 
       window.ym(counterId, "init", {
         ssr: true,
-        webvisor: true,
         clickmap: true,
         ecommerce: "dataLayer",
         referrer: document.referrer,
