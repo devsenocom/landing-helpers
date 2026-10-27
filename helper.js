@@ -25,7 +25,9 @@ const AppConfig = (() => {
     "ac-mirror": "everlusting_life_mirror",
     "ac_mirror": "everlusting_life_mirror",
     "acmirror": "everlusting_life_mirror",
-    "ly_steam": "lyssa"
+    "ly_steam": "lyssa",
+    "lg-legacy": "lust_goddess_legacy",
+    "lgl": "lust_goddess_legacy"
   };
 
   const URL_CONFIG = {
@@ -225,6 +227,14 @@ const AppConfig = (() => {
       ],
       "send_attribution": true,
       "attribution_url": "https://actions.lu-analytics.com/track/lyssa/"
+    },
+    "lust_goddess_legacy": {
+      "title": "Lust Goddess",
+      "game_url": "https://lustgoddess.com/play?noadult=1",
+      "game_url_android": "https://lustgoddess.com/play?noadult=1",
+      "analytics_url": "https://ingest.lu-analytics.com/preland_stats/adult_lyssa/visits",
+      "attribution_project": "lust_goddess_legacy",
+      "landing_path_code": "lustgoddess"
     }
   };
 
