@@ -229,6 +229,22 @@
       "analytics_url": "https://ingest.lu-analytics.com/preland_stats/adult_lyssa/visits",
       "attribution_project": "lust_goddess_legacy",
       "landing_path_code": "lustgoddess"
+    },
+    "sex_drive_isekai": {
+      "title": "Sex Drive Isekai",
+      "game_url_android": "https://enjoylix.com/api/v1/games/sexia/conversion?insta_reg=true",
+      "analytics_url": "https://ingest.lu-analytics.com/preland_stats/sex_drive_isekai/visits",
+      "attribution_project": "sex_drive_isekai",
+      "game_url": "https://enjoylix.com/api/v1/games/sexia/conversion?insta_reg=true",
+      "landing_path_code": "sex_drive_isekai",
+      "icons": [
+        {
+          "rel": "icon",
+          "href": "https://cdn.jsdelivr.net/gh/devsenocom/landing-helpers@latest/sdi/favicon.webp",
+          "type": "image/webp",
+          "sizes": "16x16"
+        }
+      ]
     }
   }
 }
