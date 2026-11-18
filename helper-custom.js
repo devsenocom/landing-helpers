@@ -79,12 +79,12 @@
         "game_url_android": "https://enjoylix.com/api/v1/games/ac/conversion?insta_reg=true",
         "game_url_ios": "https://onside.io/lust-goddess?variant=adult",
         "analytics_url": "https://ingest.lu-analytics.com/preland_stats/adult_chess/visits",
-        "title": "Lust Goddess",
+        "title": "Everlusting Life",
         "landing_path_code": "everlustinglife",
         "icons": [
           {
             "rel": "icon",
-            "href": "https://cdn.jsdelivr.net/gh/devsenocom/landing-helpers@latest/aw/favicon.webp",
+            "href": "https://cdn.jsdelivr.net/gh/devsenocom/landing-helpers@latest/ac/favicon.webp",
             "type": "image/webp",
             "sizes": "16x16"
           }
