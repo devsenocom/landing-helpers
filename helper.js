@@ -28,7 +28,8 @@ const AppConfig = (() => {
     "ly_steam": "lyssa",
     "lg-legacy": "lust_goddess_legacy",
     "lgl": "lust_goddess_legacy",
-    "sdi": "sex_drive_isekai"
+    "sdi": "sex_drive_isekai",
+    "ob": "desire_empire"
   };
 
   const URL_CONFIG = {

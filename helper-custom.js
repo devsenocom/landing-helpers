@@ -52,7 +52,8 @@
       "ly_steam": "lyssa",
       "lg-legacy": "lust_goddess_legacy",
       "lgl": "lust_goddess_legacy",
-      "sdi": "sex_drive_isekai"
+      "sdi": "sex_drive_isekai",
+      "ob": "desire_empire"
     };
 
     // attribution_project — the project slug used in analytics (the same one as in analytics_url).
