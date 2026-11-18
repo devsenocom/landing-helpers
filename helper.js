@@ -27,7 +27,8 @@ const AppConfig = (() => {
     "acmirror": "everlusting_life_mirror",
     "ly_steam": "lyssa",
     "lg-legacy": "lust_goddess_legacy",
-    "lgl": "lust_goddess_legacy"
+    "lgl": "lust_goddess_legacy",
+    "sdi": "sex_drive_isekai"
   };
 
   const URL_CONFIG = {
@@ -250,7 +251,8 @@ const AppConfig = (() => {
           "type": "image/webp",
           "sizes": "16x16"
         }
-      ]
+      ],
+      "game_url_ios": "https://onside.io/lust-goddess?variant=adult"
     }
   };
 
