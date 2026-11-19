@@ -284,7 +284,7 @@
         "game_url_ios": "https://onside.io/lust-goddess?variant=adult"
       },
       "desire_empire": {
-        "title": "Desire Empire",
+        "title": "OnlyButts",
         "game_url": "https://enjoylix.com/api/v1/games/desireempire/conversion?insta_reg=true",
         "game_url_android": "https://enjoylix.com/api/v1/games/desireempire/conversion?insta_reg=true",
         "analytics_url": "https://ingest.lu-analytics.com/preland_stats/desire_empire/visits",
